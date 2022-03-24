@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using ShopApi.Models;
 
-namespace ShopApi.Lib
+namespace ShopApi.Helper
 {
     public class Repository
     {
@@ -16,16 +16,23 @@ namespace ShopApi.Lib
             var path = $@"{DbRootPath}/{name}/value.json";
             using StreamReader r = new(path);
             var json = await r.ReadToEndAsync();
-            var commodity = JsonSerializer.Deserialize<Commodity>(json)
+            var commodityValue = JsonSerializer.Deserialize<CommodityValue>(json)
                             ?? throw new Exception($"{path} json value deserialize Commodity Fail.");
 
-            commodity.Images = new List<string>();
-            var allImgNames = new DirectoryInfo($@"{DbRootPath}/{name}/img")
+            var imgNames = new DirectoryInfo($@"{DbRootPath}/{name}/img")
                 .GetFiles("*.jpg")
                 .Select(fi => fi.Name)
                 .ToList();
 
-            foreach (var imgName in allImgNames)
+            var commodity = new Commodity
+            {
+                Name = commodityValue.Name,
+                Price = commodityValue.Price,
+                Comment = commodityValue.Comment,
+                Images = new List<string>()
+            };
+
+            foreach (var imgName in imgNames)
             {
                 var image =
                     await System.IO.File.ReadAllBytesAsync($@"{DbRootPath}/{name}/img/{imgName}");

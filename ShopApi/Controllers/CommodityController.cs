@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ShopApi.Lib;
+using ShopApi.Helper;
 using ShopApi.Models;
 
 namespace ShopApi.Controllers

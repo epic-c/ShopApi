@@ -2,11 +2,15 @@
 
 namespace ShopApi.Models
 {
-    public class Commodity
+    public class CommodityValue
     {
-        public List<string> Images { get; set; }    //Base64
         public string Name { get; set; }
         public double Price { get; set; }
         public string Comment { get; set; }
+    }
+
+    public class Commodity:CommodityValue
+    {
+        public List<string> Images { get; set; }    //Base64
     }
 }
