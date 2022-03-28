@@ -2,16 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using ShopApi.Helper;
 using ShopApi.Models;
 
 namespace ShopApi.Controllers
 {
+    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class CommodityController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("Commodities")]
         public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities()
         {
             try
@@ -25,7 +28,7 @@ namespace ShopApi.Controllers
             }
         }
 
-       
+
 
         [HttpGet("{name}")]
         public async Task<ActionResult<Commodity>> GetCommodity(string name)
