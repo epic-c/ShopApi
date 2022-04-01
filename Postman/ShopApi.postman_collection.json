@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "57781b19-84f1-454a-8ea6-e5c2c5fd4bb6",
+		"name": "ShopApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "321",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44350/api/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Commodities",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJqdGkiOiIxY2YzYjc1My02NzI2LTQ5NzUtOWI5Ny0yOTM3NWNmNzVhYTgiLCJyb2xlcyI6WyJBZG1pbiIsIlVzZXJzIl0sIm5iZiI6MTY0ODgyODMxNywiZXhwIjoxNjQ4OTE0NzE3LCJpYXQiOjE2NDg4MjgzMTcsImlzcyI6Ikp3dEF1dGhEZW1vIn0.KNQs87jAqa96AJBlGim9SVL5g7hk_ubgZxfBpu5Mi4o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44350/api/Commodity/Commodities",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"Commodity",
+						"Commodities"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

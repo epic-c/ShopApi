@@ -78,7 +78,7 @@ namespace ShopApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

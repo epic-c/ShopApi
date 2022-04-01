@@ -9,7 +9,6 @@ using ShopApi.Models;
 namespace ShopApi.Controllers
 {
     [Authorize]
-
     [Route("api/[controller]")]
     [ApiController]
     public class CommodityController : ControllerBase
