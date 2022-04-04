@@ -1,0 +1,19 @@
+[
+  {
+    "Id": "guid",
+    "MemberId": "0001",
+    "Purchaser": "xin",
+    "Phone": "0912-666-555",
+    "ProjectList": [
+      {
+        "Name": "Ring",
+        "UnitPrice": 10000,
+        "Quantity": 1,
+        "Remark": "silver"
+      }
+    ],
+    "CreationDateTime ": "2022-03-01",
+    "CheckOutDateTime": "2022-03-01",
+    "Other": ""
+  }
+]

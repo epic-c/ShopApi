@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using ShopApi.Helper;
+using ShopApi.Repository;
 
 namespace ShopApi
 {
@@ -34,6 +35,9 @@ namespace ShopApi
                                         .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                                   });
             });
+
+            services.AddSingleton<IBillRepository, BillRepository>();
+            services.AddSingleton<ICommodityRepository, CommodityRepository>();
             services.AddSingleton<BasicAuth>();
             services.AddSingleton<JwtHelpers>(); 
             services

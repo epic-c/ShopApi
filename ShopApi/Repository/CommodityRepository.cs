@@ -6,16 +6,16 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using ShopApi.Models;
 
-namespace ShopApi.Helper
+namespace ShopApi.Repository
 {
-    public class Repository
+    public class CommodityRepository : ICommodityRepository
     {
         private const string DbRootPath = @"./DB/Commodities";
-        public static async Task<Commodity> GetCommodity(string name)
+        public async Task<Commodity> GetCommodity(string name)
         {
             var path = $@"{DbRootPath}/{name}/value.json";
-            using StreamReader r = new(path);
-            var json = await r.ReadToEndAsync();
+            using StreamReader file = new(path);
+            var json = await file.ReadToEndAsync();
             var commodityValue = JsonSerializer.Deserialize<CommodityValue>(json)
                             ?? throw new Exception($"{path} json value deserialize Commodity Fail.");
 
@@ -35,14 +35,14 @@ namespace ShopApi.Helper
             foreach (var imgName in imgNames)
             {
                 var image =
-                    await System.IO.File.ReadAllBytesAsync($@"{DbRootPath}/{name}/img/{imgName}");
+                    await File.ReadAllBytesAsync($@"{DbRootPath}/{name}/img/{imgName}");
                 commodity.Images.Add(Convert.ToBase64String(image));
             }
 
             return commodity;
         }
 
-        public static async Task<List<Commodity>> GetCommodities()
+        public async Task<List<Commodity>> GetCommodities()
         {
             var commodities = new List<Commodity>();
 

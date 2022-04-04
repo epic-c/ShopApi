@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using ShopApi.Repository;
+using System.Collections.Generic;
+using ShopApi.Models.Bill;
 
 namespace ShopApi.Controllers
 {
@@ -14,12 +13,19 @@ namespace ShopApi.Controllers
     [ApiController]
     public class BillController : ControllerBase
     {
-        [HttpPost]
-        public async Task<ActionResult<string>> PostBill()
+        private IBillRepository _billRepository;
+
+        public BillController(IBillRepository billRepository)
+        {
+            _billRepository = billRepository;
+        }
+        [HttpGet("AllBill")]
+        public async Task<ActionResult<IEnumerable<Bill>>> GetBill()
         {
             try
             {
-                return Ok("bill");
+                var result = await _billRepository.GetBills();
+                return Ok(result);
             }
             catch (Exception e)
             {
