@@ -3,29 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using ShopApi.Helper;
 using ShopApi.Models;
 using ShopApi.Repository;
 
 namespace ShopApi.Controllers
 {
     [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class CommodityController : ControllerBase
     {
-        private ICommodityRepository _commodityRepository;
+        private readonly ICommodityRepository _iCommodityRepository;
 
-        public CommodityController(ICommodityRepository commodityRepository)
+        public CommodityController(ICommodityRepository iCommodityRepository)
         {
-            _commodityRepository = commodityRepository;
+            iCommodityRepository = iCommodityRepository;
         }
-
         [HttpGet("Commodities")]
         public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities()
         {
             try
             {
-                var commodities = await _commodityRepository.GetCommodities();
+                var commodities = await _iCommodityRepository.GetCommodities();
                 return Ok(commodities);
             }
             catch (Exception e)
@@ -41,7 +42,7 @@ namespace ShopApi.Controllers
         {
             try
             {
-                var commodity = await _commodityRepository.GetCommodity(name);
+                var commodity = await _iCommodityRepository.GetCommodity(name);
                 return Ok(commodity);
             }
             catch (Exception e)

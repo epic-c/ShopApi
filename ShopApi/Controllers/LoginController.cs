@@ -10,11 +10,11 @@ namespace ShopApi.Controllers
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly JwtHelpers _jwt;
-        private readonly BasicAuth _basicAuth;
+        private readonly IJwtHelpers _jwt;
+        private readonly IBasicAuth _basicAuth;
         private readonly ILogger<LoginController> _logger;
 
-        public LoginController(JwtHelpers jwt, BasicAuth basicAuth, ILogger<LoginController> logger)
+        public LoginController(IJwtHelpers jwt, IBasicAuth basicAuth, ILogger<LoginController> logger)
         {
             _jwt = jwt;
             _basicAuth = basicAuth;

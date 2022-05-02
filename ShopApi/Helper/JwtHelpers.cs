@@ -10,7 +10,7 @@ namespace ShopApi.Helper
 {
     // https://medium.com/%E4%BC%81%E9%B5%9D%E4%B9%9F%E6%87%82%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/jwt-json-web-token-%E5%8E%9F%E7%90%86%E4%BB%8B%E7%B4%B9-74abfafad7ba
     // https://blog.miniasp.com/post/2019/12/16/How-to-use-JWT-token-based-auth-in-aspnet-core-31
-    public class JwtHelpers
+    public class JwtHelpers:IJwtHelpers
     {
         private readonly IConfiguration Configuration;
 
@@ -74,6 +74,11 @@ namespace ShopApi.Helper
 
             return serializeToken;
         }
+    }
+
+    public interface IJwtHelpers
+    {
+        string GenerateToken(string userName, int expireMinutes = 30);
     }
 }
 

@@ -38,8 +38,8 @@ namespace ShopApi
 
             services.AddSingleton<IBillRepository, BillRepository>();
             services.AddSingleton<ICommodityRepository, CommodityRepository>();
-            services.AddSingleton<BasicAuth>();
-            services.AddSingleton<JwtHelpers>(); 
+            services.AddSingleton<IBasicAuth, BasicAuth>();
+            services.AddSingleton<IJwtHelpers, JwtHelpers>();
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

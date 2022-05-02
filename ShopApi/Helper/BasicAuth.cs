@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ShopApi.Helper
 {
-    public class BasicAuth
+    public class BasicAuth : IBasicAuth
     {
         public (string userId, string password) Parse(HttpRequest request)
         {
@@ -21,5 +21,10 @@ namespace ShopApi.Helper
 
             return (userIdAndPwd[0], userIdAndPwd[1]);
         }
+    }
+
+    public interface IBasicAuth
+    {
+        (string userId, string password) Parse(HttpRequest request);
     }
 }
