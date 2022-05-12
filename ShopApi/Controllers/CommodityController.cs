@@ -9,7 +9,7 @@ using ShopApi.Repository;
 
 namespace ShopApi.Controllers
 {
-    [Authorize]
+ //   [Authorize]
 
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace ShopApi.Controllers
 
         public CommodityController(ICommodityRepository iCommodityRepository)
         {
-            iCommodityRepository = iCommodityRepository;
+            _iCommodityRepository = iCommodityRepository;
         }
         [HttpGet("Commodities")]
         public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities()
