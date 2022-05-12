@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using ShopApi.Helper;
 using ShopApi.Models;
 using ShopApi.Repository;
 
 namespace ShopApi.Controllers
 {
- //   [Authorize]
+    [Authorize]
 
     [Route("api/[controller]")]
     [ApiController]
