@@ -1,5 +1,6 @@
 {
   "Name": "Cap",
   "Price": 50,
-  "Comment": "This is cap"
+  "Comment": "This is cap",
+  "Star": 4.1
 }

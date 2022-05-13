@@ -7,6 +7,7 @@ namespace ShopApi.Models
         public string Name { get; set; }
         public double Price { get; set; }
         public string Comment { get; set; }
+        public double Star { get; set; }
     }
 
     public class Commodity:CommodityValue

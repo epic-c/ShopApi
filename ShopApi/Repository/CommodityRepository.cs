@@ -29,6 +29,7 @@ namespace ShopApi.Repository
                 Name = commodityValue.Name,
                 Price = commodityValue.Price,
                 Comment = commodityValue.Comment,
+                Star = commodityValue.Star,
                 Images = new List<string>()
             };
 
