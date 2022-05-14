@@ -6,9 +6,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using ShopApi.Helper;
 using ShopApi.Repository;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+using ShopApi.Models;
 
 namespace ShopApi
 {
@@ -23,7 +27,8 @@ namespace ShopApi
 
         // This method gets called by the runtime. Use this method to add services to the container.
 
-        string MyAllowSpecificOrigins = "*";
+        private const string MyAllowSpecificOrigins = "*";
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -72,7 +77,12 @@ namespace ShopApi
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JwtSettings:SignKey")))
                     };
                 });
-            services.AddControllers();
+            
+            services.AddControllers()
+                //TODO 目前並沒有出現 odata 的 { $odataContext: "...", value: [ ... ] } 的格式，也沒有辦法用 $count=true 讓總數出現
+                .AddOData(opt => opt    //https://github.com/OData/AspNetCoreOData
+                    .Count().Filter().Expand().Select().OrderBy().SetMaxTop(30)
+                    .AddRouteComponents("api", GetEdmModel()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShopApi", Version = "v1" });
@@ -103,6 +113,15 @@ namespace ShopApi
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private IEdmModel GetEdmModel()
+        {
+            var odataBuilder = new ODataConventionModelBuilder();
+            odataBuilder.EnableLowerCamelCase(); //CamelEntityNaming
+            odataBuilder.EntitySet<Commodity>("Commodity");
+                      
+            return odataBuilder.GetEdmModel();
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.OData.Query;
 using ShopApi.Models;
 using ShopApi.Repository;
 
@@ -20,6 +21,8 @@ namespace ShopApi.Controllers
         {
             _iCommodityRepository = iCommodityRepository;
         }
+
+        [EnableQuery]
         [HttpGet("Commodities")]
         public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities()
         {

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopApi.Models
 {
     public class CommodityValue
     {
+        [Key]
         public string Name { get; set; }
         public double Price { get; set; }
         public string Comment { get; set; }
