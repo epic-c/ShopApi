@@ -9,7 +9,7 @@ using ShopApi.Repository;
 
 namespace ShopApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
 
     [Route("api/[controller]")]
     [ApiController]
@@ -39,12 +39,12 @@ namespace ShopApi.Controllers
 
 
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<Commodity>> GetCommodity(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Commodity>> GetCommodity(int id)
         {
             try
             {
-                var commodity = await _iCommodityRepository.GetCommodity(name);
+                var commodity = await _iCommodityRepository.GetCommodity(id.ToString());
                 return Ok(commodity);
             }
             catch (Exception e)

@@ -26,6 +26,7 @@ namespace ShopApi.Repository
 
             var commodity = new Commodity
             {
+                Id = commodityValue.Id,
                 Name = commodityValue.Name,
                 Price = commodityValue.Price,
                 Comment = commodityValue.Comment,
