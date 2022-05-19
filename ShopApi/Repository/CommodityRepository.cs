@@ -11,22 +11,22 @@ namespace ShopApi.Repository
     public class CommodityRepository : ICommodityRepository
     {
         private const string DbRootPath = @"./DB/Commodities";
-        public async Task<Commodity> GetCommodity(string name)
+        public async Task<Commodity> GetCommodity(string id)
         {
-            var path = $@"{DbRootPath}/{name}/value.json";
+            var path = $@"{DbRootPath}/{id}/value.json";
             using StreamReader file = new(path);
             var json = await file.ReadToEndAsync();
             var commodityValue = JsonSerializer.Deserialize<CommodityValue>(json)
                             ?? throw new Exception($"{path} json value deserialize Commodity Fail.");
 
-            var imgNames = new DirectoryInfo($@"{DbRootPath}/{name}/img")
+            var imgNames = new DirectoryInfo($@"{DbRootPath}/{id}/img")
                 .GetFiles("*.jpg")
                 .Select(fi => fi.Name)
                 .ToList();
 
             var commodity = new Commodity
             {
-                Id = commodityValue.Id,
+                Id = id,
                 Name = commodityValue.Name,
                 Price = commodityValue.Price,
                 Comment = commodityValue.Comment,
@@ -37,7 +37,7 @@ namespace ShopApi.Repository
             foreach (var imgName in imgNames)
             {
                 var image =
-                    await File.ReadAllBytesAsync($@"{DbRootPath}/{name}/img/{imgName}");
+                    await File.ReadAllBytesAsync($@"{DbRootPath}/{id}/img/{imgName}");
                 commodity.Images.Add(Convert.ToBase64String(image));
             }
 

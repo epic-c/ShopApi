@@ -6,7 +6,7 @@ namespace ShopApi.Models
     public class CommodityValue
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Comment { get; set; }

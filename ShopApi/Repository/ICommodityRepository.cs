@@ -6,7 +6,7 @@ namespace ShopApi.Repository
 {
     public interface ICommodityRepository
     {
-        public Task<Commodity> GetCommodity(string name);
+        public Task<Commodity> GetCommodity(string id);
         public Task<List<Commodity>> GetCommodities();
     }
 }
