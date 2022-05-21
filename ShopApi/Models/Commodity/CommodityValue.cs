@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShopApi.Models
+namespace ShopApi.Models.Commodity
 {
     public class CommodityValue
     {
@@ -11,10 +10,5 @@ namespace ShopApi.Models
         public double Price { get; set; }
         public string Comment { get; set; }
         public double Star { get; set; }
-    }
-
-    public class Commodity:CommodityValue
-    {
-        public List<string> Images { get; set; }    //Base64
     }
 }

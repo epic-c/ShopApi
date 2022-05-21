@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.OData.Query;
-using ShopApi.Models;
-using ShopApi.Repository;
+using ShopApi.Models.Commodity;
+using ShopApi.Repository.CommodityRepository;
 
 namespace ShopApi.Controllers
 {
@@ -37,14 +36,12 @@ namespace ShopApi.Controllers
             }
         }
 
-
-
         [HttpGet("{id}")]
         public async Task<ActionResult<Commodity>> GetCommodity(int id)
         {
             try
             {
-                var commodity = await _iCommodityRepository.GetCommodity(id.ToString());
+                var commodity = await _iCommodityRepository.GetCommodityAndAllImage(id.ToString());
                 return Ok(commodity);
             }
             catch (Exception e)

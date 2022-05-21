@@ -13,6 +13,8 @@ using ShopApi.Repository;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 using ShopApi.Models;
+using ShopApi.Models.Commodity;
+using ShopApi.Repository.CommodityRepository;
 
 namespace ShopApi
 {
@@ -41,6 +43,7 @@ namespace ShopApi
                                   });
             });
 
+            services.AddSingleton<IPayee, Payee>();
             services.AddSingleton<IBillRepository, BillRepository>();
             services.AddSingleton<ICommodityRepository, CommodityRepository>();
             services.AddSingleton<IBasicAuth, BasicAuth>();
